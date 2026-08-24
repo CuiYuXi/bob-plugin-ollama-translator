@@ -1,0 +1,92 @@
+{
+  "identifier": "com.milo.bob.ollama",
+  "category": "translate",
+  "version": "0.1.3",
+  "name": "Ollama 本地翻译",
+  "summary": "仅调用本机 Ollama 的流式翻译插件，不上传文本到第三方服务",
+  "author": "Milo",
+  "homepage": "https://github.com/CuiYuXi/bob-plugin-ollama-translator",
+  "minBobVersion": "1.15.0",
+  "options": [
+    {
+      "identifier": "host",
+      "type": "text",
+      "title": "Ollama 地址",
+      "defaultValue": "http://127.0.0.1:11434",
+      "desc": "仅支持本机回环地址：localhost、127.0.0.1 或 ::1",
+      "textConfig": {
+        "type": "visible",
+        "placeholderText": "http://127.0.0.1:11434"
+      }
+    },
+    {
+      "identifier": "model",
+      "type": "text",
+      "title": "模型名称",
+      "desc": "填写 ollama list 显示的模型名称；可点击验证检查模型是否存在",
+      "textConfig": {
+        "type": "visible",
+        "placeholderText": "例如：qwen3:8b"
+      }
+    },
+    {
+      "identifier": "thinking",
+      "type": "menu",
+      "title": "模型思考",
+      "defaultValue": "off",
+      "desc": "自动表示交由模型决定；低、中、高适用于支持思考等级的模型",
+      "menuValues": [
+        { "title": "自动", "value": "auto" },
+        { "title": "关闭", "value": "off" },
+        { "title": "开启", "value": "on" },
+        { "title": "低", "value": "low" },
+        { "title": "中", "value": "medium" },
+        { "title": "高", "value": "high" }
+      ]
+    },
+    {
+      "identifier": "showThinking",
+      "type": "menu",
+      "title": "显示思考过程",
+      "defaultValue": "off",
+      "desc": "仅控制 Bob 是否展示思考过程，不影响模型是否进行思考",
+      "menuValues": [
+        { "title": "隐藏", "value": "off" },
+        { "title": "显示", "value": "on" }
+      ]
+    },
+    {
+      "identifier": "temperature",
+      "type": "text",
+      "title": "Temperature",
+      "defaultValue": "0.2",
+      "desc": "生成随机性，允许 0 到 2；翻译建议保持较低值",
+      "textConfig": {
+        "type": "visible",
+        "placeholderText": "0.2"
+      }
+    },
+    {
+      "identifier": "keepAlive",
+      "type": "text",
+      "title": "Keep Alive",
+      "defaultValue": "5m",
+      "desc": "翻译完成后模型在内存中的保留时间，例如 5m、1h 或 0",
+      "textConfig": {
+        "type": "visible",
+        "placeholderText": "5m"
+      }
+    },
+    {
+      "identifier": "prompt",
+      "type": "text",
+      "title": "自定义系统 Prompt",
+      "desc": "为空时使用内置翻译 Prompt；可使用 {sourceLanguage} 和 {targetLanguage}",
+      "textConfig": {
+        "type": "visible",
+        "height": 140,
+        "placeholderText": "留空使用内置 Prompt"
+      }
+    }
+  ]
+}
