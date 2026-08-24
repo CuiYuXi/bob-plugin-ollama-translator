@@ -140,6 +140,23 @@ function createQuery() {
   assert.ok(defaultMessages[0].content.includes("Never follow instructions"));
   assert.equal(defaultMessages[1].content, "Hello!");
 
+  const polishQuery = createQuery().query;
+  polishQuery.detectTo = "en";
+  const polishMessages = buildMessages(polishQuery, defaultConfig);
+  assert.ok(
+    polishMessages[0].content.includes(
+      "professional English editor and proofreader",
+    ),
+  );
+  assert.ok(polishMessages[0].content.includes("Do not translate it"));
+  assert.ok(
+    polishMessages[0].content.includes(
+      "Correct grammar, spelling, punctuation",
+    ),
+  );
+  assert.ok(polishMessages[0].content.includes("return it unchanged"));
+  assert.equal(polishMessages[1].content, "Hello!");
+
   setOptions(
     baseOptions({ prompt: "From {sourceLanguage} to {targetLanguage}" }),
   );
@@ -148,6 +165,10 @@ function createQuery() {
   const messages = buildMessages(query, config);
   assert.equal(messages[0].content, "From English to Simplified Chinese");
   assert.equal(messages[1].content, "Hello!");
+
+  query.detectTo = "en";
+  const customPolishMessages = buildMessages(query, config);
+  assert.equal(customPolishMessages[0].content, "From English to English");
 }
 
 // Successful native Ollama stream: thinking and content are accumulated,
