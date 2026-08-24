@@ -85,6 +85,13 @@ function createQuery() {
   assert.equal(appcast.identifier, info.identifier);
   assert.equal(appcast.versions[0].version, info.version);
   assert.equal(appcast.versions[0].minBobVersion, info.minBobVersion);
+
+  const icon = readFileSync(
+    new URL("../public/icon.png", import.meta.url),
+  );
+  assert.equal(icon.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+  assert.equal(icon.readUInt32BE(16), 256);
+  assert.equal(icon.readUInt32BE(20), 256);
 }
 
 // Arbitrary callback boundaries and a final line without a trailing newline.

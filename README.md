@@ -14,6 +14,7 @@
 - 仅接受 `localhost`、`127.0.0.1` 和 `::1` 回环地址
 - 支持 Bob 取消信号以及 170 秒请求超时
 - 支持 Bob 内置插件更新检查
+- 使用 Ollama 图标
 
 ## 使用要求
 
@@ -64,10 +65,10 @@ pnpm check
 构建结果位于：
 
 ```text
-dist/bob-plugin-ollama-translator-v0.2.1.bobplugin
+dist/bob-plugin-ollama-translator-v0.2.2.bobplugin
 ```
 
-`.bobplugin` 压缩包根目录只包含 Bob 所需的 `main.js` 和 `info.json`。
+`.bobplugin` 压缩包根目录包含 Bob 所需的 `main.js`、`info.json` 和 `icon.png`。
 
 ## 项目结构
 
@@ -79,6 +80,7 @@ src/ndjson.ts     增量 NDJSON 解析器
 src/prompt.ts     翻译 Prompt
 src/config.ts     本地配置校验
 public/info.json  Bob 插件清单
+public/icon.png   Ollama 图标
 ```
 
 ## License

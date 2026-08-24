@@ -30,4 +30,4 @@ jobs:
 
       - name: Verify plugin archive layout
         run: |
-          test "$(unzip -Z1 dist/*.bobplugin | sort | tr '\n' ' ')" = "info.json main.js "
+          test "$(unzip -Z1 dist/*.bobplugin | sort | tr '\n' ' ')" = "icon.png info.json main.js "

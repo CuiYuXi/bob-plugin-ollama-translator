@@ -1,7 +1,7 @@
 {
   "identifier": "com.milo.bob.ollama",
   "category": "translate",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "name": "Ollama 本地翻译",
   "summary": "仅调用本机 Ollama 的流式翻译插件，不上传文本到第三方服务",
   "author": "Milo",

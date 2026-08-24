@@ -17,21 +17,29 @@ const bundle = await rollup(config);
 await bundle.write(config.output);
 await bundle.close();
 
-await copyFile("public/info.json", "dist/info.json");
+await Promise.all([
+  copyFile("public/info.json", "dist/info.json"),
+  copyFile("public/icon.png", "dist/icon.png"),
+]);
 
 const reproducibleTime = new Date("2000-01-01T00:00:00.000Z");
-await Promise.all([
-  chmod("dist/main.js", 0o644),
-  chmod("dist/info.json", 0o644),
-  utimes("dist/main.js", reproducibleTime, reproducibleTime),
-  utimes("dist/info.json", reproducibleTime, reproducibleTime),
-]);
+const packageFiles = [
+  "dist/main.js",
+  "dist/info.json",
+  "dist/icon.png",
+];
+await Promise.all(
+  packageFiles.flatMap((file) => [
+    chmod(file, 0o644),
+    utimes(file, reproducibleTime, reproducibleTime),
+  ]),
+);
 
 const info = JSON.parse(await readFile("public/info.json", "utf8"));
 const packagePath = `dist/bob-plugin-ollama-translator-v${info.version}.bobplugin`;
 const zip = spawnSync(
   "zip",
-  ["-X", "-j", "-q", packagePath, "dist/main.js", "dist/info.json"],
+  ["-X", "-j", "-q", packagePath, ...packageFiles],
   {
     env: { ...process.env, TZ: "UTC" },
     stdio: "inherit",
