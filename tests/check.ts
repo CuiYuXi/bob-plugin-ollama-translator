@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import type {
   BobHttpRequestOptions,
   BobHttpStreamRequestOptions,
@@ -58,6 +59,32 @@ function createQuery() {
     onCompletion: (payload) => completions.push(payload),
   };
   return { query, streams, completions };
+}
+
+// Bob update metadata stays aligned with the packaged plugin metadata.
+{
+  const info = JSON.parse(
+    readFileSync(new URL("../public/info.json", import.meta.url), "utf8"),
+  ) as {
+    appcast: string;
+    identifier: string;
+    minBobVersion: string;
+    version: string;
+  };
+  const appcast = JSON.parse(
+    readFileSync(new URL("../appcast.json", import.meta.url), "utf8"),
+  ) as {
+    identifier: string;
+    versions: Array<{ minBobVersion: string; version: string }>;
+  };
+
+  assert.equal(
+    info.appcast,
+    "https://raw.githubusercontent.com/CuiYuXi/bob-plugin-ollama-translator/main/appcast.json",
+  );
+  assert.equal(appcast.identifier, info.identifier);
+  assert.equal(appcast.versions[0].version, info.version);
+  assert.equal(appcast.versions[0].minBobVersion, info.minBobVersion);
 }
 
 // Arbitrary callback boundaries and a final line without a trailing newline.

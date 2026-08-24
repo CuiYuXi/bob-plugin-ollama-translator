@@ -1,11 +1,12 @@
 {
   "identifier": "com.milo.bob.ollama",
   "category": "translate",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "Ollama 本地翻译",
   "summary": "仅调用本机 Ollama 的流式翻译插件，不上传文本到第三方服务",
   "author": "Milo",
   "homepage": "https://github.com/CuiYuXi/bob-plugin-ollama-translator",
+  "appcast": "https://raw.githubusercontent.com/CuiYuXi/bob-plugin-ollama-translator/main/appcast.json",
   "minBobVersion": "1.15.0",
   "options": [
     {

@@ -1,0 +1,13 @@
+{
+  "identifier": "com.milo.bob.ollama",
+  "versions": [
+    {
+      "version": "0.2.1",
+      "desc": "新增 Bob 自动更新支持；源语言与目标语言相同时自动润色并纠正语法",
+      "sha256": "af3c03db0fe2f51433f94ec3f817cdbc8591609733000291af6ce9988a0f7e0d",
+      "url": "https://github.com/CuiYuXi/bob-plugin-ollama-translator/releases/download/v0.2.1/bob-plugin-ollama-translator-v0.2.1.bobplugin",
+      "minBobVersion": "1.15.0",
+      "timestamp": 1787544662000
+    }
+  ]
+}

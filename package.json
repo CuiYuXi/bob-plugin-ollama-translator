@@ -1,14 +1,15 @@
 {
   "name": "bob-plugin-ollama-translator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "A local-only Ollama translation plugin for Bob",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run verify:appcast",
     "test": "node --import tsx tests/check.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:appcast": "node scripts/verify-appcast.mjs"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.3.0",

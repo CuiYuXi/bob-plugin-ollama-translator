@@ -13,6 +13,7 @@
 - 通过 `/api/tags` 验证 Ollama 连接与模型配置
 - 仅接受 `localhost`、`127.0.0.1` 和 `::1` 回环地址
 - 支持 Bob 取消信号以及 170 秒请求超时
+- 支持 Bob 内置插件更新检查
 
 ## 使用要求
 
@@ -36,6 +37,8 @@ ollama pull <模型名称>
 安装插件后，在 Bob 的插件设置中填写 `ollama list` 显示的模型名称，然后点击验证。
 
 当 Bob 中选择的源语言与目标语言相同时，插件会自动修正语法、拼写和标点，并改善表达的自然度；不会将文本翻译为其他语言。填写自定义系统 Prompt 后，以自定义指令为准。
+
+`0.2.1` 之前的版本没有内置更新源，需要手动安装一次 `0.2.1` 或更高版本；之后即可在 Bob 插件列表中检查更新。
 
 ## 配置
 
@@ -61,7 +64,7 @@ pnpm check
 构建结果位于：
 
 ```text
-dist/bob-plugin-ollama-translator-v0.2.0.bobplugin
+dist/bob-plugin-ollama-translator-v0.2.1.bobplugin
 ```
 
 `.bobplugin` 压缩包根目录只包含 Bob 所需的 `main.js` 和 `info.json`。
